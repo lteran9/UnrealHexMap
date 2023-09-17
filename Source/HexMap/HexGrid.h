@@ -18,13 +18,13 @@ protected:
 	TArray<AHexTile*> HexTiles;
 	TArray<TArray<AHexTile*>> HexGrid;
 
+	/* The number of tiles in the grid: 3N^2-3N+1 */
 	UPROPERTY(EditAnywhere, Category = "Grid")
-	int32 Width;
-	UPROPERTY(EditAnywhere, Category = "Grid")
-	int32 Height;
+	int32 NSize;
 	/* The tile outer radius in centimeters. */
 	UPROPERTY(EditAnywhere, Category = "Grid")
 	float TileSize;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
 	TSubclassOf<AHexTile> GrassHexTile;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")

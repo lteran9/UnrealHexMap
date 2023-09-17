@@ -7,8 +7,7 @@
 #include "HexTile.generated.h"
 
 UENUM()
-enum class HexTileType
-{
+enum class HexTileType {
 	INVALID,
 	DIRT,
 	GRASS,
@@ -19,21 +18,40 @@ enum class HexTileType
 	MAX UMETA(Hidden)
 };
 
+USTRUCT(BlueprintType)
+struct FHexCoords {
+	GENERATED_BODY()
+
+	/*  */
+	UPROPERTY(EditAnywhere)
+	int32 qAxis;
+	/*  */
+	UPROPERTY(EditAnywhere)
+	int32 rAxis;
+	/*  */
+	UPROPERTY(EditAnywhere)
+	int32 sAxis;
+
+	FHexCoords() {
+		qAxis = 0;
+		rAxis = 0;
+		sAxis = 0;
+	}
+
+	FHexCoords(int32 q, int32 r) {
+		qAxis = q;
+		rAxis = r;
+		sAxis = -q - r;
+	}
+};
+
 UCLASS()
-class HEXMAP_API AHexTile : public AActor
-{
+class HEXMAP_API AHexTile : public AActor {
 	GENERATED_BODY()
 
 protected:
-	/* Cube coordinate Q */
 	UPROPERTY(EditAnywhere, Category = "Tile")
-	int32 qAxis;
-	/* Cube coordinate R */
-	UPROPERTY(EditAnywhere, Category = "Tile")
-	int32 rAxis;
-	/* Cube coordinate S */
-	UPROPERTY(EditAnywhere, Category = "Tile")
-	int32 sAxis;
+	FHexCoords Coordinates;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tile")
 	HexTileType Type;
