@@ -15,6 +15,7 @@ class HEXMAP_API AHexGrid : public AActor
 	GENERATED_BODY()
 
 protected:	
+	TArray<AHexTile*> HexTiles;
 	TArray<TArray<AHexTile*>> HexGrid;
 
 	UPROPERTY(EditAnywhere, Category = "Grid")
@@ -33,5 +34,8 @@ public:
 
 protected:	
 	virtual void BeginPlay() override;
+
+private:
+	FVector GetCoordinates(int r, int q);
 
 };

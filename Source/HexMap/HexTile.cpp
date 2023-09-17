@@ -25,3 +25,9 @@ void AHexTile::Tick(float DeltaTime)
 
 }
 
+void AHexTile::SetCubeCoordinates(int32 row, int32 col)
+{
+	this->rAxis = row;
+	this->qAxis = col;
+	this->sAxis = -(col)-row;
+}
