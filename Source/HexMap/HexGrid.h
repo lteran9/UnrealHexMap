@@ -25,8 +25,10 @@ protected:
 	/* The tile outer radius in centimeters. */
 	UPROPERTY(EditAnywhere, Category = "Grid")
 	float TileSize;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
 	TSubclassOf<AHexTile> GrassHexTile;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
+	TSubclassOf<AHexTile> WaterHexTile;
 
 public:
 	// Sets default values for this actor's properties
@@ -36,6 +38,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	FVector GetCoordinates(int r, int q);
+	FVector GetCoordinates(int r, int q, int height);
 
 };

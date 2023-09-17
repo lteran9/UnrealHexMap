@@ -31,11 +31,11 @@ void AHexGrid::BeginPlay()
 
 		for (int r = r1; r <= r2; r++)
 		{
-			TSubclassOf<AHexTile> tileToSpawn = GrassHexTile;
-			FVector scale = FVector(1, 1, FMath::RandRange(1,3));
+			const int height = FMath::RandRange(0, 2);
+			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GrassHexTile : WaterHexTile;
 
-			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, GetCoordinates(r, q), FRotator::ZeroRotator);
-			newTile->SetActorScale3D(scale);
+			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, GetCoordinates(r, q, height), FRotator::ZeroRotator);
+			newTile->SetActorScale3D(FVector(1, 1, height + 1));
 			newTile->SetCubeCoordinates(r, q);
 			HexTiles[index++] = newTile;
 		}
@@ -64,7 +64,7 @@ void AHexGrid::BeginPlay()
 	}*/
 }
 
-FVector AHexGrid::GetCoordinates(int r, int q)
+FVector AHexGrid::GetCoordinates(int r, int q, int height)
 {
 	const float outerRadius = TileSize;
 	const float innerRadius = sqrt(3) * TileSize;
@@ -76,6 +76,6 @@ FVector AHexGrid::GetCoordinates(int r, int q)
 	const float column = (q * innerRadius) + (r * offset);
 	const float row = r * (outerRadius * 3 / 2);
 
-	return FVector(column, row, FMath::RandRange(0, 2));
+	return FVector(column, row, height * (TileSize * 0.1));
 }
 
