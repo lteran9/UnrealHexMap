@@ -12,8 +12,6 @@ AHexGrid::AHexGrid() {
 void AHexGrid::BeginPlay() {
 	Super::BeginPlay();
 
-	//HexGrid.SetNumZeroed(Width);
-
 	// The array index
 	int index = 0;
 	// Number of tiles extending out from the center

@@ -50,6 +50,10 @@ class HEXMAP_API AHexTile : public AActor {
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Tile")
+	bool bIsOccupied;
+
 	UPROPERTY(EditAnywhere, Category = "Tile")
 	FHexCoords Coordinates;
 
@@ -67,4 +71,10 @@ public:
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	void OnTileSelected(AActor* TouchedActor, FKey ButtonPressed);
 };
