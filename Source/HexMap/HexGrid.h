@@ -16,7 +16,6 @@ class HEXMAP_API AHexGrid : public AActor
 
 protected:	
 	TArray<AHexTile*> HexTiles;
-	TArray<TArray<AHexTile*>> HexGrid;
 
 	/* The number of tiles in the grid: 3N^2-3N+1 */
 	UPROPERTY(EditAnywhere, Category = "Grid")
@@ -26,7 +25,7 @@ protected:
 	float TileSize;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
-	TSubclassOf<AHexTile> GrassHexTile;
+	TSubclassOf<AHexTile> GroundHexTile;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
 	TSubclassOf<AHexTile> WaterHexTile;
 

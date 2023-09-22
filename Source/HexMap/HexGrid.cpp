@@ -29,9 +29,11 @@ void AHexGrid::BeginPlay() {
 			const int height = FMath::RandRange(0, 2);
 			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GrassHexTile : WaterHexTile;
 
-			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, GetCoordinates(r, q, height), FRotator::ZeroRotator);
+			FVector coordinates = GetCoordinates(r, q, height);
+			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, coordinates, FRotator::ZeroRotator);
 			newTile->SetActorScale3D(FVector(1, 1, height + 1));
 			newTile->SetCubeCoordinates(r, q);
+			newTile->SetFolderPath(TEXT("HexGrid"));
 			HexTiles[index++] = newTile;
 		}
 	}

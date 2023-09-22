@@ -38,9 +38,11 @@ struct FHexCoords {
 		sAxis = 0;
 	}
 
+	/* Q is for Column, R is for Row. */
 	FHexCoords(int32 q, int32 r) {
 		qAxis = q;
 		rAxis = r;
+		// Auto calculate the S position
 		sAxis = -q - r;
 	}
 };
