@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Public/GenericStructs.h"
 #include "HexTile.generated.h"
 
 UENUM()
@@ -18,35 +19,6 @@ enum class HexTileType {
 	MAX UMETA(Hidden)
 };
 
-USTRUCT(BlueprintType)
-struct FHexCoords {
-	GENERATED_BODY()
-
-	/*  */
-	UPROPERTY(EditAnywhere)
-	int32 qAxis;
-	/*  */
-	UPROPERTY(EditAnywhere)
-	int32 rAxis;
-	/*  */
-	UPROPERTY(EditAnywhere)
-	int32 sAxis;
-
-	FHexCoords() {
-		qAxis = 0;
-		rAxis = 0;
-		sAxis = 0;
-	}
-
-	/* Q is for Column, R is for Row. */
-	FHexCoords(int32 q, int32 r) {
-		qAxis = q;
-		rAxis = r;
-		// Auto calculate the S position
-		sAxis = -q - r;
-	}
-};
-
 UCLASS()
 class HEXMAP_API AHexTile : public AActor {
 	GENERATED_BODY()
@@ -57,7 +29,7 @@ protected:
 	bool bIsOccupied;
 
 	UPROPERTY(EditAnywhere, Category = "Tile")
-	FHexCoords Coordinates;
+	FHexCoordinates Coordinates;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Tile")
 	HexTileType Type;

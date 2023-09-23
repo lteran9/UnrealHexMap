@@ -14,7 +14,7 @@ AHexTile::AHexTile() {
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TileMesh"));
 	Mesh->SetupAttachment(RootComponent);
-	Coordinates = FHexCoords(0, 0);
+	Coordinates = FHexCoordinates(0, 0);
 }
 
 // Called every frame
@@ -29,7 +29,7 @@ void AHexTile::BeginPlay() {
 
 void AHexTile::SetCubeCoordinates(int32 row, int32 col) {
 	// Q = Column, R = Row
-	Coordinates = FHexCoords(col, row);
+	Coordinates = FHexCoordinates(col, row);
 }
 
 UFUNCTION()
