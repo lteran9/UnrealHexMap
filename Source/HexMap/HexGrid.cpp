@@ -40,9 +40,9 @@ void AHexGrid::BeginPlay() {
 }
 
 FVector AHexGrid::GetCoordinates(int r, int q, int height) {
-	// 
-	const float outerRadius = HexTileDiameter;
-	const float innerRadius = sqrt(3) * HexTileDiameter;
+	// Height / 2
+	const float outerRadius = HexTileDiameter / 2;
+	const float innerRadius = (sqrt(3) * HexTileDiameter) / 2;
 	const float offset = (innerRadius / 2);
 	const float column = (q * innerRadius) + (r * offset);
 	const float row = r * (outerRadius * 3 / 2);
