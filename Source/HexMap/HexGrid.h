@@ -22,7 +22,7 @@ protected:
 	int32 NSize;
 	/* The tile outer radius in centimeters. */
 	UPROPERTY(EditAnywhere, Category = "Grid")
-	float TileSize;
+	float HexTileDiameter;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Grid|Tiles")
 	TSubclassOf<AHexTile> GroundHexTile;

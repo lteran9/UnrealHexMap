@@ -27,7 +27,7 @@ void AHexGrid::BeginPlay() {
 
 		for (int r = r1; r <= r2; r++) {
 			const int height = FMath::RandRange(0, 2);
-			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GrassHexTile : WaterHexTile;
+			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GroundHexTile : WaterHexTile;
 
 			FVector coordinates = GetCoordinates(r, q, height);
 			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, coordinates, FRotator::ZeroRotator);
@@ -40,16 +40,13 @@ void AHexGrid::BeginPlay() {
 }
 
 FVector AHexGrid::GetCoordinates(int r, int q, int height) {
-	const float outerRadius = TileSize;
-	const float innerRadius = sqrt(3) * TileSize;
-
-	const bool oddRow = FMath::Abs(r) % 2 == 1;
-
+	// 
+	const float outerRadius = HexTileDiameter;
+	const float innerRadius = sqrt(3) * HexTileDiameter;
 	const float offset = (innerRadius / 2);
-
 	const float column = (q * innerRadius) + (r * offset);
 	const float row = r * (outerRadius * 3 / 2);
 
-	return FVector(column, row, height * (TileSize * 0.1));
+	return FVector(column, row, height * (HexTileDiameter * 0.1));
 }
 
