@@ -21,15 +21,35 @@ void AHexGrid::BeginPlay() {
 
 	HexTiles.SetNumZeroed(size);
 
+	const float noiseScale = 0.05f;
+
 	for (int q = -N; q <= N; q++) {
 		const int r1 = FMath::Max(-N, -q - N);
 		const int r2 = FMath::Min(N, -q + N);
 
 		for (int r = r1; r <= r2; r++) {
-			const int height = FMath::RandRange(0, 2);
+			const FVector location = FVector(r * noiseScale + 0.01, q * noiseScale + 0.01, r2 * noiseScale + 0.01);
+			const float zSample = FMath::Abs(FMath::PerlinNoise3D(location));
+			const float height = zSample <= 0 ? 0.f : FGenericPlatformMath::RoundToInt(zSample * 10); // Multiply by 10 to convert to cm
+
+			/*UE_LOG(
+				LogTemp,
+				Warning,
+				TEXT("FVector = %s"),
+				*location.ToString()
+			);*/
+
+			UE_LOG(
+				LogTemp,
+				Warning,
+				TEXT("zSample = %f, Height = %f"),
+				zSample,
+				height
+			);
+
 			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GroundHexTile : WaterHexTile;
 
-			FVector coordinates = GetCoordinates(r, q, height);
+			FVector coordinates = GetCoordinates(r, q, height + 1);
 			AHexTile* newTile = GetWorld()->SpawnActor<AHexTile>(tileToSpawn, coordinates, FRotator::ZeroRotator);
 			newTile->SetActorScale3D(FVector(1, 1, height + 1));
 			newTile->SetCubeCoordinates(r, q);
