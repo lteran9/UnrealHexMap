@@ -67,6 +67,6 @@ FVector AHexGrid::GetCoordinates(int r, int q, int height) {
 	const float column = (q * innerRadius) + (r * offset);
 	const float row = r * (outerRadius * 3 / 2);
 
-	return FVector(column, row, height * (outerRadius * 0.1));
+	return FVector(column, row, height * 10);
 }
 
