@@ -39,13 +39,13 @@ void AHexGrid::BeginPlay() {
 				*location.ToString()
 			);*/
 
-			UE_LOG(
+			/*UE_LOG(
 				LogTemp,
 				Warning,
 				TEXT("zSample = %f, Height = %f"),
 				zSample,
 				height
-			);
+			);*/
 
 			TSubclassOf<AHexTile> tileToSpawn = height > 0 ? GroundHexTile : WaterHexTile;
 
