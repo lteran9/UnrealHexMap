@@ -54,6 +54,7 @@ void AHexGrid::BeginPlay() {
 			newTile->SetActorScale3D(FVector(1, 1, height + 1));
 			newTile->SetCubeCoordinates(r, q);
 			newTile->SetFolderPath(TEXT("HexGrid"));
+			newTile->AttachToActor(this, FAttachmentTransformRules::KeepWorldTransform);
 			HexTiles[index++] = newTile;
 		}
 	}
